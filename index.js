@@ -4,6 +4,8 @@ import { connectDB } from "./lib/db.js";
 
 const app = express();
 const port = 1502;
+const cors = require('cors');
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 connectDB();
