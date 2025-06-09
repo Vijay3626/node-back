@@ -26,6 +26,7 @@ const registerSchema = new Schema({
 
 export const register = model("register", registerSchema);
 
+// ------------------------------------------------------------
 const loginSchema = new Schema({
   email: {
     required: true,
@@ -37,3 +38,17 @@ const loginSchema = new Schema({
   },
 });
 export const login = model("login", loginSchema);
+
+// ------------------------------------------------------------
+
+const userListSchema = new Schema({
+  from: { type: Schema.Types.ObjectId, ref: "register", required: true },
+  to: { type: Schema.Types.ObjectId, ref: "register", required: true },
+  status: {
+    type: String,
+    enum: ["pending", "accepted", "rejected"],
+    default: "pending",
+  },
+},{ timestamps: true });
+
+export const userlist = model("userlist", userListSchema);

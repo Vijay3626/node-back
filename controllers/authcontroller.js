@@ -80,3 +80,6 @@ export const authlogout = async (req,res)=>{
     return res.status(500).json({ status:500,message: "User logout failed", error: error.message });
   }
 }
+export const authget = async (req, res) => {
+  return res.status(200).json({ status:200,message: "User is authenticated" });
+}
