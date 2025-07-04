@@ -9,7 +9,6 @@ export const authregister = async (req, res) => {
   const { name, email, password, cnf_password } = req.body;
 
   if (!name || !email || !password || !cnf_password) {
-    console.log(name,email,password,cnf_password);
     return res.status(400).json({ status:400,message: "All fields are required" });
   }
 
@@ -58,13 +57,12 @@ try {
     return res.status(400).json({ status:400,message: "Invalid credentials" });
   } 
   const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
-  console.log('token: ', token);
   if(isMatch && user){
     return res.status(200).json({ status:200,message: "Login successful", token, user: { id: user._id, name: user.name, email: user.email } });
   }
 } catch (error) {
   console.log('error: ', error);
-  return res.status(500).json({ status:500,message: "User login failed vijay", error: error.message });
+  return res.status(500).json({ status:500,message: "User login failed", error: error.message });
 }
 };
 
