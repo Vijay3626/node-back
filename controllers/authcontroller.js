@@ -57,6 +57,7 @@ try {
     return res.status(400).json({ status:400,message: "Invalid credentials" });
   } 
   const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
+  console.log('token: ', token);
   if(isMatch && user){
     return res.status(200).json({ status:200,message: "Login successful", token, user: { id: user._id, name: user.name, email: user.email } });
   }
